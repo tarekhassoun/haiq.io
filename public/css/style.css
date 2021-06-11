@@ -1,0 +1,242 @@
+/*
+Blue-Green          #0c9bbd
+Middle Blue Green   #90dcd0
+Maximum Blue Green  #2fbdbd
+Banana Yellow       #ffe625
+Tangerine Yellow    #ffce06
+Selective Yellow    #ffb700
+Eerie Black         #131313
+*/
+
+
+/***** Site *****/
+*
+{
+    transition: 0.6s !important;
+}
+
+html, body
+{
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.theme-light
+{
+    background-color: #FFFFFF;
+    color: #131313;
+}
+.theme-dark
+{
+    background-color: #090909;
+    color: #FFFFFF;
+}
+
+.watch
+{
+    transition: 0.2s !important;
+    background: #0c9bbd;
+    border-radius: 70%;
+    padding: 9px 0;
+    text-align: center;
+    width: 42px;
+    height: 42px;
+}
+
+.watch:hover,
+.watch:active
+{
+    background: #e1b000;
+}
+/***** End Site *****/
+
+
+/***** Elements *****/
+a
+{
+    color: #2fbdbd;
+    text-decoration: none;
+}
+a:hover, a:active
+{
+    color: #14a2a2;
+    text-decoration: none;
+}
+
+h3
+{
+    color: #0c9bbd;
+}
+/***** End Elements *****/
+
+
+/***** Header *****/
+header
+{
+    border-bottom-width: 6px;
+    border-bottom-style: solid;
+    border-image: linear-gradient(to right, #0c9bbd, #fccf14) 1;
+}
+header #search-bar
+{
+    box-shadow: 0 0 3px #0c9bbd;
+    width: 350px;
+}
+header a
+{
+    cursor: pointer;
+}
+
+.header-dates
+{
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-color: #2fbdbd;
+}
+.header-dates .date-item
+{
+    border-right: 1px solid;
+    border-color: #2fbdbd;
+}
+.header-dates .date-item:last-child
+{
+    border: 0px;
+}
+.header-dates .date-item:hover, .header-dates .date-item:active
+{
+    background: #2fbdbd;
+    color: white;
+}
+/***** End Header *****/
+
+
+/***** Footer *****/
+footer
+{
+    border-top-width: 6px;
+    border-top-style: solid;
+    border-image: linear-gradient(to right, #0c9bbd, #fccf14) 1;
+}
+/***** End Footer *****/
+
+
+/***** Buttons *****/
+.btn-green
+{
+    background-color: #2fbdbd;
+    color: #F6F6F6;
+}
+.btn-green:hover,
+.btn-green:active
+{
+    background-color: #14a2a2;
+    color: #F6F6F6;
+    text-decoration: none;
+}
+/***** End Buttons *****/
+
+
+/***** Homepage *****/
+.home-section-header
+{
+    border-bottom: 1px solid #0c9bbd;
+}
+
+.home-stat
+{
+    font-size: 1.5em;
+    color: #0c9bbd;
+    text-shadow: 0 0 6px #0c9bbd;
+}
+/***** End Homepage *****/
+
+
+
+
+
+.single-container
+{
+    position: relative;
+    background-color: #0A0C1C;
+    text-decoration: none;
+    color: white;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    box-shadow: 0 0 5px #0c9bbd;
+}
+.single-container:hover,
+.single-container:active
+{
+    text-decoration: none;
+    color: white;
+}
+.single-container .shadow
+{
+    background-color: black;
+    opacity: 0.4;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+.single-container:hover .shadow
+{
+    display: initial;
+    z-index: 15;
+}
+
+.single-container .title
+{
+    display: block;
+    position: absolute;
+    bottom: 0;
+    padding: 5px 0;
+    background-color: #0A0C1C;
+    font-weight: bold;
+    overflow-wrap: break-word;
+    text-align: center;
+    width: 100%;
+    z-index: 20;
+    opacity: 0.9;
+    font-size: 18px;
+}
+.single-container .watch
+{
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    z-index: 30;
+}
+
+
+.movie-container
+{
+    height: 345px;
+}
+
+.tv-container
+{
+    height: 345px;
+}
+
+.music-container
+{
+    height: 322px;
+}
+
+.sports-container
+{
+    border-bottom: 1px solid #0c9bbd;
+}
+.sports-container:hover, .sports-container:active
+{
+    background-color: #C5F1FB;
+}
+.sports-container .watch
+{
+    color: white !important;
+}
