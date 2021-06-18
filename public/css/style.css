@@ -37,11 +37,7 @@ html, body
 {
     transition: 0.2s !important;
     background: #0c9bbd;
-    border-radius: 70%;
-    padding: 9px 0;
     text-align: center;
-    width: 42px;
-    height: 42px;
 }
 
 .watch:hover,
@@ -148,6 +144,14 @@ footer
     font-size: 1.5em;
     color: #0c9bbd;
     text-shadow: 0 0 6px #0c9bbd;
+}
+
+.watch-home
+{
+    border-radius: 70%;
+    padding: 9px 0;
+    width: 42px;
+    height: 42px;
 }
 /***** End Homepage *****/
 

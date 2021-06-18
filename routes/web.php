@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () { return view('user/pages/home/index'); })->name('homepage');
 
+Route::group(['prefix' => 'movie'], function ()
+{
+    Route::get('/{slug}', 'App\Http\Controllers\MovieController@getSingleView')->name('public.');
+});
+
 Route::group(['prefix' => 'calendar'], function ()
 {
     Route::get('/', function () { return view('user/pages/calendar/index'); })->name('calendar');

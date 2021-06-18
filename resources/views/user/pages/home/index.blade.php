@@ -5,109 +5,73 @@
 @section('content')
 
 <?php
-$client = new GuzzleHttp\Client(['verify' => false]);
-$response = $client
-    ->request(
-            "GET",
-            env('TMDB_API_URL') . "movie/upcoming",
-            ['query' => [
-                "api_key" => env('TMDB_API_KEY'),
-                "language" => "en-US",
-                "page" => "1"
-            ]]
-    )
-    ->getBody()->getContents();
+// use GuzzleHttp\Client;
+// use App\Models\Movie;
+// use App\Models\MovieImage;
 
-$response = json_decode($response);
-echo '<pre>';
-var_dump($response->results[0]);
-echo '</pre>';
+// $client = new Client(['verify' => false]);
 
-$movies = array();
-$movies[] = array(
-    'title' => "F9",
-    'slug' => "f9",
-    'image' => "f9.jpg",
-    'rating' => "PG13",
-    'date' => "01 Feb, 2022",
-);
-$movies[] = array(
-    'title' => "Black Widow",
-    'slug' => "black-widow",
-    'image' => "black_widow.jpg",
-    'rating' => "PG13",
-    'date' => "01 Feb, 2022",
-);
-$movies[] = array(
-    'title' => "Space Jam: A New Legacy",
-    'slug' => "space-jam-a-new-legacy",
-    'image' => "space_jam_a_new_legacy.jpg",
-    'rating' => "PG",
-    'date' => "01 Feb, 2022",
-);
-$movies[] = array(
-    'title' => "The Suicide Squad",
-    'slug' => "the-suicide-squad",
-    'image' => "the_suicide_squad.jpg",
-    'rating' => "R",
-    'date' => "01 Feb, 2022",
-);
-$movies[] = array(
-    'title' => "Free Guy",
-    'slug' => "free-guy",
-    'image' => "free_guy.jpg",
-    'rating' => "NA",
-    'date' => "01 Feb, 2022",
-);
-$movies[] = array(
-    'title' => "Space Jam: A New Legacy",
-    'slug' => "space-jam-a-new-legacy",
-    'image' => "space_jam_a_new_legacy.jpg",
-    'rating' => "PG",
-    'date' => "01 Feb, 2022",
-);
-$movies[] = array(
-    'title' => "F9",
-    'slug' => "f9",
-    'image' => "f9.jpg",
-    'rating' => "PG13",
-    'date' => "01 Feb, 2022",
-);
-$movies[] = array(
-    'title' => "Black Widow",
-    'slug' => "black-widow",
-    'image' => "black_widow.jpg",
-    'rating' => "PG13",
-    'date' => "01 Feb, 2022",
-);
-$movies[] = array(
-    'title' => "Space Jam: A New Legacy",
-    'slug' => "space-jam-a-new-legacy",
-    'image' => "space_jam_a_new_legacy.jpg",
-    'rating' => "PG",
-    'date' => "01 Feb, 2022",
-);
-$movies[] = array(
-    'title' => "The Suicide Squad",
-    'slug' => "the-suicide-squad",
-    'image' => "the_suicide_squad.jpg",
-    'rating' => "R",
-    'date' => "01 Feb, 2022",
-);
-$movies[] = array(
-    'title' => "Free Guy",
-    'slug' => "free-guy",
-    'image' => "free_guy.jpg",
-    'rating' => "NA",
-    'date' => "01 Feb, 2022",
-);
-$movies[] = array(
-    'title' => "Space Jam: A New Legacy",
-    'slug' => "space-jam-a-new-legacy",
-    'image' => "space_jam_a_new_legacy.jpg",
-    'rating' => "PG",
-    'date' => "01 Feb, 2022",
-);
+// $i = 1;
+// $total_pages = 2;
+// while ($i <= $total_pages) {
+//     $response = $client->request(
+//             "GET",
+//             env('TMDB_API_URL') . "movie/upcoming",
+//             ['query' => [
+//                 "api_key" => env('TMDB_API_KEY'),
+//                 "language" => "en-US",
+//                 "page" => $i
+//             ]]
+//     )->getBody()->getContents();
+
+//     $response = json_decode($response);
+//     $total_pages = $response->total_pages;
+
+//     foreach ($response->results as $sm) {
+//         $sma = array();
+
+//         $sma['original_title']  = $sm->original_title;
+//         $sma['tmdb_id']         = $sm->id;
+//         $sma['release_date']    = $sm->release_date;
+//         $sma['language']        = getLangFromCode($sm->original_language);
+//         $sma['overview']        = $sm->overview;
+//         $sma['tmdb_popularity'] = $sm->popularity;
+
+//         /* ["genre_ids"]=>
+//             array(2) {
+//                 [0]=> int(35)
+//                 [1]=> int(80)
+//             } */
+
+//         $mov = Movie::updateOrCreate(["title" => $sm->title], $sma);
+//         $mov->save();
+
+//         $img_arr = array(
+//             "movie_id" => $mov->id,
+//             "type" => "poster",
+//         );
+//         $img = MovieImage::updateOrCreate(["image" => $sm->poster_path], $img_arr);
+//         $img->save();
+//     }
+
+//     $i++;
+// }
+
+
+// function getLangFromCode($code)
+// {
+//     switch ($code) {
+//         case 'da': return 'danish';   break;
+//         case 'en': return 'english';  break;
+//         case 'es': return 'spanish';  break;
+//         case 'fr': return 'french';   break;
+//         case 'it': return 'italian';  break;
+//         case 'ja': return 'japanese'; break;
+//         case 'nl': return 'dutch';    break;
+
+//         default: return 'other'; break;
+//     }
+// }
 
 $tvs = array();
 $tvs[] = array(
@@ -259,16 +223,25 @@ $sports[] = array(
 <div class="container">
     <h3 class="row home-section-header mt-3">Movies</h3>
     <div class="row justify-content-center">
-        @foreach ($movies as $id => $movie)
+        @foreach ($top_movies as $id => $tm)
+        <?php
+            $vid_img = App\Models\Movie::find($tm->id)->images()->where("type", "poster")->first();
+
+            if (!is_null($vid_img)) {
+                $this_v_img = "https://image.tmdb.org/t/p/original" . $vid_img->image;
+            } else {
+                $this_v_img = "https://www.fillmurray.com/g/200/300";
+            }
+        ?>
         <div class="col-2 mt-1 mb-3 px-1">
             <a
-                href="/movie/{{ $movie['slug'] }}"
+                href="/movie/{{ $tm['slug'] }}"
                 class="d-block w-100 single-container movie-container"
-                title="{{ $movie['title'] }}"
-                style="background-image: url('{{ asset("cdn/movies/" . $movie["image"]) }}');"
+                title="{{ $tm['title'] }}"
+                style="background-image: url('{{ $this_v_img }}');"
             >
-                <span class="title">{{ $movie['title'] }}<br>{{ $movie['date'] }}</span>
-                <span class="watch" onclick="watch('movie', {{ $movie['slug'] }}); return false;"><i class="fas fa-eye"></i></span>
+                <span class="title">{{ $tm['title'] }}<br>{{ $tm['release_date'] }}</span>
+                <span class="watch watch-home" onclick="watch('movie', {{ $tm['slug'] }}); return false;"><i class="fas fa-eye"></i></span>
                 <span class="shadow"></span>
             </a>
         </div>
@@ -288,7 +261,7 @@ $sports[] = array(
                 style="background-image: url('{{ asset("cdn/tv/" . $tv["image"]) }}');"
             >
                 <span class="title">{{ $tv['title'] }}<br>{{ $tv['date'] }}</span>
-                <span class="watch" onclick="watch('tv', {{ $tv['slug'] }}); return false;"><i class="fas fa-eye"></i></span>
+                <span class="watch watch-home" onclick="watch('tv', {{ $tv['slug'] }}); return false;"><i class="fas fa-eye"></i></span>
                 <span class="shadow"></span>
             </a>
         </div>
@@ -349,7 +322,7 @@ $sports[] = array(
                 @endif
             </div>
             <div class="col-2 justify-content-center align-items-center d-flex">{{ $sport['date'] }}</div>
-            <div class="col-2 justify-content-end align-items-center d-flex"><span class="watch" onclick="watch('sports', ''); return false;"><i class="fas fa-eye"></i></span></div>
+            <div class="col-2 justify-content-end align-items-center d-flex"><span class="watch watch-home" onclick="watch('sports', ''); return false;"><i class="fas fa-eye"></i></span></div>
         </a>
         @endforeach
     </div>
@@ -367,7 +340,7 @@ $sports[] = array(
                 style="background-image: url('{{ asset("cdn/music/" . $music["image"]) }}');"
             >
                 <span class="title">{{ $music['title'] }}</span>
-                <span class="watch" onclick="watch('music', {{ $music['slug'] }}); return false;"><i class="fas fa-eye"></i></span>
+                <span class="watch watch-home" onclick="watch('music', {{ $music['slug'] }}); return false;"><i class="fas fa-eye"></i></span>
                 <span class="shadow"></span>
             </a>
         </div>
